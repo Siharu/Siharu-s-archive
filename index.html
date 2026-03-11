@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIHARU | Official Site</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Connecting Overlay -->
+<div id="boot">CONNECTING TO ARCHIVES...</div>
+
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <a href="index.html" class="logo-link"><div class="logo-siharu">SIHARU</div></a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="stories.html">Stories</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="terminal-text">Welcome</div>
+  <div class="sub-text">Explore the archives</div>
+  <a href="#archive-select" class="btn-access" id="enter-archive">Enter Archives</a>
+</section>
+
+<!-- Archive Selection -->
+<section id="archive-select" style="display:none; text-align:center; padding:100px 20px;">
+  <div class="terminal-text glitching" style="font-size:4rem;">Archives of My Vision</div>
+  <a href="gallery.html" class="btn-access" style="margin:20px;">Go to Drawings</a>
+  <div class="terminal-text glitching" style="font-size:4rem; margin-top:60px;">Archives of My Mind</div>
+  <a href="stories.html" class="btn-access" style="margin:20px;">Go to Stories</a>
+</section>
+
+<script src="main.js"></script>
+<script>
+  const enterBtn = document.getElementById('enter-archive');
+  const archiveSelect = document.getElementById('archive-select');
+  if(enterBtn){
+    enterBtn.addEventListener('click', e=>{
+      e.preventDefault();
+      // Hide hero, show selection
+      document.getElementById('hero').style.display='none';
+      archiveSelect.style.display='block';
+      // Optional: page glitch effect
+      document.body.style.animation='glitch 0.3s';
+      setTimeout(()=>document.body.style.animation='',300);
+    });
+  }
+</script>
+
+</body>
+</html>

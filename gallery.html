@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIHARU | Archive</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="gallery.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+
+<!-- CONNECTING OVERLAY -->
+<div id="boot">CONNECTING TO ARCHIVE...</div>
+
+<header>
+  <div class="header-container">
+    <a href="index.html" class="logo-link"><h1 class="logo-siharu">SIHARU</h1></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="gallery.html" class="active">ARCHIVE</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="archive">
+  <div class="archive-header">
+    <h3>[VAULT_FILES: KRITA_EXPORTS]</h3>
+  </div>
+
+  <div class="masonry-grid">
+    <div class="art-card"><img src="images/Dawning sunset.png" alt=""><span>DAWNING SUNSET</span></div>
+    <div class="art-card"><img src="images/death in the morning.png" alt=""><span>DEATH IN THE MORNING</span></div>
+    <div class="art-card"><img src="images/dream.png" alt=""><span>DREAM</span></div>
+    <div class="art-card"><img src="images/ever lasting paradise 2.png" alt=""><span>EVER LASTING PARADISE 2</span></div>
+    <div class="art-card"><img src="images/happy birthday kat.png" alt=""><span>HAPPY BIRTHDAY KAT</span></div>
+    <div class="art-card"><img src="images/hard life.png" alt=""><span>HARD LIFE</span></div>
+    <div class="art-card"><img src="images/her view.png" alt=""><span>HER VIEW</span></div>
+    <div class="art-card"><img src="images/mindspace.png" alt=""><span>MINDSPACE</span></div>
+    <div class="art-card"><img src="images/Murmuration.png" alt=""><span>MURMURATION</span></div>
+    <div class="art-card"><img src="images/Nibius.png" alt=""><span>NIBIUS</span></div>
+    <div class="art-card"><img src="images/primo.png" alt=""><span>PRIMO</span></div>
+    <div class="art-card"><img src="images/scroching.png" alt=""><span>SCROCHING</span></div>
+    <div class="art-card"><img src="images/serphiric bloom.png" alt=""><span>SERPHIRIC BLOOM</span></div>
+    <div class="art-card"><img src="images/strangers.png" alt=""><span>STRANGERS</span></div>
+    <div class="art-card"><img src="images/The stranges dreams.png" alt=""><span>THE STRANGE DREAMS</span></div>
+  </div>
+</main>
+
+<footer id="about">
+  <div class="about-container">
+    <p class="status-code">BROWSE_MODE: ENABLED</p>
+    <a href="index.html" class="back-link">BACK_TO_HOME</a>
+  </div>
+</footer>
+
+<!-- FULLSCREEN IMAGE VIEWER -->
+<div id="fullscreen-viewer"><img src="" alt=""><span class="close-viewer">✕</span></div>
+
+<script src="main.js"></script>
+<script src="gallery.js"></script>
+<script>
+// --- Shuffle-on-click: swap images randomly ---
+const cards = document.querySelectorAll('.art-card');
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    // Apply glitch effect
+    card.classList.add('glitch');
+    setTimeout(() => card.classList.remove('glitch'), 250);
+
+    // Shuffle: pick a random other card and swap images
+    const otherIndex = Math.floor(Math.random() * cards.length);
+    if (cards[otherIndex] !== card){
+      const tempSrc = card.querySelector('img').src;
+      const tempAlt = card.querySelector('img').alt;
+      const tempSpan = card.querySelector('span').textContent;
+
+      card.querySelector('img').src = cards[otherIndex].querySelector('img').src;
+      card.querySelector('img').alt = cards[otherIndex].querySelector('img').alt;
+      card.querySelector('span').textContent = cards[otherIndex].querySelector('span').textContent;
+
+      cards[otherIndex].querySelector('img').src = tempSrc;
+      cards[otherIndex].querySelector('img').alt = tempAlt;
+      cards[otherIndex].querySelector('span').textContent = tempSpan;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
