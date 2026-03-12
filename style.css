@@ -121,4 +121,107 @@ nav a:hover, nav a.active { color:var(--red); }
   50% { text-shadow: 2px 0 cyan, -2px 0 red; }
   75% { text-shadow: -2px 0 cyan, 2px 0 red; }
   100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+
+}
+/* --- HIDDEN EASTER EGG --- */
+#secret-code-section {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px; 
+  transform: scale(0.35); /* Makes it very small */
+  opacity: 0.2; /* Hides it in the shadows */
+  transition: opacity 0.4s ease;
+}
+
+#secret-code-section:hover {
+  opacity: 1; /* Lights up when they find it */
+}
+
+#secret-code-section p {
+  margin: 0;
+  font-size: 2.25rem;
+  text-align: center;
+  background: linear-gradient(hsl(0 0% 80%), hsl(0 0% 50%));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: 5px;
+}
+
+.secret-code-list {
+  font-size: 3rem;
+  display: flex;
+  flex-wrap: nowrap;
+  color: hsl(0 0% 100%);
+  border-radius: 1rem;
+  background: hsl(0 0% 6%);
+  justify-content: center;
+  box-shadow: 0 1px hsl(0 0% 100% / 0.25) inset;
+  list-style: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.secret-code-list:hover {
+  cursor: grab;
+}
+
+.secret-digit {
+  display: flex;
+  height: 100%;
+  padding: 4rem 1rem;
+  outline: none;
+}
+
+.secret-digit:focus-visible {
+  outline-color: hsl(0 0% 50% / 0.25);
+  outline-offset: 1rem;
+}
+
+.secret-digit span {
+  scale: calc(var(--active, 0) + 0.5);
+  filter: blur(calc((1 - var(--active, 0)) * 1rem));
+  transition: scale calc(((1 - var(--active, 0)) + 0.2) * 1s), filter calc(((1 - var(--active, 0)) + 0.2) * 1s);
+}
+
+.secret-digit:first-of-type {
+  padding-left: 3rem;
+}
+.secret-digit:last-of-type {
+  padding-right: 3rem;
+}
+
+:root {
+  --lerp-0: 1; /* === sin(90deg) */
+  --lerp-1: calc(sin(50deg));
+  --lerp-2: calc(sin(45deg));
+  --lerp-3: calc(sin(35deg));
+  --lerp-4: calc(sin(25deg));
+  --lerp-5: calc(sin(15deg));
+}
+
+.secret-digit:is(:hover, :focus-visible) {
+  --active: var(--lerp-0);
+}
+.secret-digit:is(:hover, :focus-visible) + .secret-digit,
+.secret-digit:has(+ .secret-digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-1);
+}
+.secret-digit:is(:hover, :focus-visible) + .secret-digit + .secret-digit,
+.secret-digit:has(+ .secret-digit + .secret-digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-2);
+}
+.secret-digit:is(:hover, :focus-visible) + .secret-digit + .secret-digit + .secret-digit,
+.secret-digit:has(+ .secret-digit + .secret-digit + .secret-digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-3);
+}
+.secret-digit:is(:hover, :focus-visible) + .secret-digit + .secret-digit + .secret-digit + .secret-digit,
+.secret-digit:has(+ .secret-digit + .secret-digit + .secret-digit + .secret-digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-4);
+}
+.secret-digit:is(:hover, :focus-visible) + .secret-digit + .secret-digit + .secret-digit + .secret-digit + .secret-digit,
+.secret-digit:has(+ .secret-digit + .secret-digit + .secret-digit + .secret-digit + .secret-digit:is(:hover, :focus-visible)) {
+  --active: var(--lerp-5);
 }
