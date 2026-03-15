@@ -1,17 +1,61 @@
-#stories { padding:60px 40px; background:#050505; text-align:center; }
-.story-card { 
-  display:block; width:100%; margin-bottom:20px; break-inside:avoid; border:1px solid var(--gray); background:#080808; position:relative; overflow:hidden; padding:40px; font-family:'Space Mono', monospace; color:var(--red); cursor:not-allowed; 
+:root {
+  --red: #ff0000;
+  --dark-red: #440000;
+  --black: #050505;
 }
-.story-card span { display:block; font-size:1rem; }
 
-/* Paper Glitch Effect */
-.paper-glitch {
-  animation: paperGlitch 0.8s ease-in-out infinite;
+#stories { padding:60px 40px; background:var(--black); text-align:center; min-height: 100vh; }
+
+/* Thunder Flash Overlay */
+#flash-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: white; opacity: 0; pointer-events: none; z-index: 9999;
 }
+.thunder-flash { animation: flashAnim 0.15s ease-out; }
+@keyframes flashAnim { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+/* Story Cards */
+.story-card { 
+  display:block; width:100%; margin-bottom:20px; border:1px solid #1a1a1a; 
+  background:#080808; position:relative; overflow:hidden; padding:40px; 
+  font-family:'Space Mono', monospace; color:var(--red); transition: 0.3s;
+}
+
+.active-entry .entry-id { cursor: pointer; border-bottom: 1px dashed var(--dark-red); }
+
+/* Synopsis & Rain Physics */
+.synopsis-box {
+  display: none; position: relative; margin-top: 20px; 
+  border: 1px solid var(--dark-red); background: #000; overflow: hidden; min-height: 450px;
+}
+
+.rain-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+.drop { position: absolute; width: 2px; height: 15px; background: linear-gradient(transparent, var(--red)); opacity: 0.6; animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(600px); } }
+
+/* Audio UI Styling */
+.audio-controls {
+  position: relative; z-index: 20; padding: 15px; background: rgba(10, 0, 0, 0.9);
+  border-bottom: 1px solid var(--dark-red); display: flex; align-items: center; gap: 15px; justify-content: center;
+}
+.audio-controls button {
+  background: transparent; border: 1px solid var(--red); color: var(--red);
+  padding: 5px 15px; font-family: 'Space Mono', monospace; cursor: pointer; font-size: 0.8rem;
+}
+.audio-controls button:hover { background: var(--red); color: #000; }
+#current-track-name { font-size: 0.7rem; color: var(--red); letter-spacing: 1px; }
+
+/* Content Styling */
+.synopsis-content { position: relative; z-index: 5; padding: 30px; text-align: left; color: #ccc; font-size: 1rem; line-height: 1.7; }
+.warning-blink { font-weight: bold; animation: blink 0.5s step-end infinite; color: var(--red); }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Original Paper Glitch */
+.paper-glitch { animation: paperGlitch 0.8s ease-in-out infinite; }
 @keyframes paperGlitch {
   0% { transform: rotate(0deg) translate(0,0); }
-  25% { transform: rotate(-2deg) translate(2px,-2px); }
-  50% { transform: rotate(1deg) translate(-2px,2px); }
-  75% { transform: rotate(-1deg) translate(1px,-1px); }
+  25% { transform: rotate(-1deg) translate(1px,-1px); }
+  50% { transform: rotate(1deg) translate(-1px,1px); }
+  75% { transform: rotate(-0.5deg) translate(0px,0px); }
   100% { transform: rotate(0deg) translate(0,0); }
 }
