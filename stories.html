@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stories - Archives of My Mind</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="stories.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories - Siharu Archives</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stories.css">
 </head>
-<body>
+<body class="cyber-bg">
 
-<div id="boot">LOADING STORIES...</div>
+<div id="flash-overlay"></div>
 
 <header>
   <div class="header-container">
@@ -25,14 +25,41 @@
 </header>
 
 <section id="stories">
-  <div class="archive-header"><h3>Archives of My Mind</h3></div>
-  <div class="story-card"><span>Coming Soon</span></div>
-  <div class="story-card"><span>Coming Soon</span></div>
-  <div class="story-card"><span>Coming Soon</span></div>
-  <!-- Add more story cards as you write them -->
+  <div class="archive-header"><h3>DECRYPTED_ENTRIES</h3></div>
+  
+  <div class="story-card active-entry">
+    <span class="entry-id" onclick="handleStoryClick(this.parentElement)">ENTRY_01: ANOTHER_SKY</span>
+    
+    <div class="synopsis-box">
+      <div class="rain-container"></div>
+      
+      <div class="audio-controls">
+        <button onclick="togglePlayback()" id="play-pause-btn">PAUSE</button>
+        <button onclick="switchTrack()">SWITCH_SIGNAL</button>
+        <span id="current-track-name">SIGNAL: LAMENT</span>
+      </div>
+
+      <div class="synopsis-content">
+        <p class="warning-blink">>> DECRYPTION SUCCESSFUL</p>
+        <p><strong>Another Sky — The Sky Knows. They Know. He Does Not.</strong></p>
+        <p>Som lives an ordinary life in Dhaka—long workdays, a fragile mother at home, and memories of someone he once loved. But one night, the sky glitches.</p>
+        <p>The moon flickers unnaturally. Shadows twist where they shouldn’t. Reality feels… broken.</p>
+        <p>Soon, Som notices things no one else seems to see. History doesn’t match his memories. Strange signals pulse across the airwaves. Villages fall silent overnight. And a dark, oily rain begins to drip from the sky, suffocating the light.</p>
+        <p>Then the impossible happens.</p>
+        <p>Nine people closest to him — including his lover — vanish. Not missing. Not dead. Erased. No photos. No records. No memory of their existence. Except his.</p>
+        <p>As the world grows stranger and colder, Som feels the creeping certainty of something watching, waiting, calculating. And in that silence, a horrifying truth becomes clear: This may not be his world.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card locked"><span>Coming Soon</span></div>
+  <div class="story-card locked"><span>Coming Soon</span></div>
 </section>
 
-<script src="main.js"></script>
+<audio id="track-lament" src="audio/Another_Sky_WWIII_Lament.mp3" loop></audio>
+<audio id="track-kage" src="audio/Obsedia_no_Kage.mp3" loop></audio>
+
+<script src="audio.js"></script>
 <script src="stories.js"></script>
 
 </body>
